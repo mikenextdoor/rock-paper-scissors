@@ -1,4 +1,4 @@
-const prompt = require("prompt-sync")();
+//const prompt = require("prompt-sync")();
 
 const plays = ["Rock", "Paper", "Scissors"]
 
@@ -7,7 +7,7 @@ function getComputerChoice() {
     return number
 }
 
-function getHumanChoice() {
+/*function getHumanChoice() {
     let play = prompt("Whats your play? (Rock, Paper, Scissors) ").toLowerCase();
     if (play == "rock") {
         return 0;
@@ -19,10 +19,16 @@ function getHumanChoice() {
         console.log("Not a valid play");
         return getHumanChoice()
     }
+}*/
+
+function handleClick(buttonIndex) {
+    const computerPlay = plays[getComputerChoice()].toLowerCase()
+    playRound(plays[buttonIndex], computerPlay)
 }
 
 let humanScore = 0;
 let computerScore = 0;
+let resultBox = document.querySelector(".footer");
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice.toLowerCase() === computerChoice.toLowerCase()) {
@@ -42,7 +48,7 @@ function playRound(humanChoice, computerChoice) {
         computerScore++
         console.log("You lost!")
     }
-    console.log(`You: ${humanScore} | Computer: ${computerScore}`);
+    resultBox.textContent = `You: ${humanScore} | Computer: ${computerScore}`
 }
 
 function playGame() {
@@ -62,4 +68,20 @@ function playGame() {
     }
 }
 
-playGame();
+//playGame();
+
+document.getElementById("one").addEventListener("click", function() {
+    handleClick(0)
+});
+
+document.getElementById("two").addEventListener("click", function() {
+    handleClick(1)
+});
+
+document.getElementById("three").addEventListener("click", function() {
+    handleClick(2)
+});
+
+/*
+* Very, very basic implementation. Only to try a few things.
+*/
